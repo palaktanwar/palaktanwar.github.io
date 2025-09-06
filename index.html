@@ -11,15 +11,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        @font-face {
-            font-family: 'Darlington Signature';
-            src: url('assets/fonts/darlington-signature/DarlingtonSignature.woff2') format('woff2'),
-                 url('assets/fonts/darlington-signature/DarlingtonSignature.woff') format('woff'),
-                 url('assets/fonts/DarlingtonSignature.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* Light gray background */
@@ -30,9 +21,6 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-        .signature-font {
-            font-family: 'Darlington Signature', cursive;
         }
         .skill-tag {
             background-color: rgba(59, 130, 246, 0.1);
@@ -112,7 +100,7 @@
     <!-- Header & Navigation -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold"><span class="signature-font font-normal text-black text-3xl md:text-4xl leading-none">Palak Tanwar</span></a>
+            <a href="#" class="text-2xl font-bold"><span class="text-gradient font-bold text-black text-3xl md:text-4xl leading-none">Palak Tanwar</span></a>
             <nav class="hidden md:flex space-x-8 items-center">
                 <a href="#about" class="nav-link text-slate-600 hover:text-blue-600">About</a>
                 <a href="#experience" class="nav-link text-slate-600 hover:text-blue-600">Experience</a>
