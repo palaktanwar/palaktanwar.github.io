@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palak Tanwar | Data Analytics Engineering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+            color: #1e293b; /* Dark slate text */
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .skill-tag {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #2563eb;
+            padding: 0.375rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            background-color: rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.1);
+        }
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.07);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            background-color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #3b82f6;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Fade-in animation */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gradient">PT</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="nav-link text-slate-600 hover:text-blue-600">About</a>
+                <a href="#experience" class="nav-link text-slate-600 hover:text-blue-600">Experience</a>
+                <a href="#skills" class="nav-link text-slate-600 hover:text-blue-600">Skills</a>
+                <a href="#projects" class="nav-link text-slate-600 hover:text-blue-600">Projects</a>
+                <a href="#contact" class="px-5 py-2 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition-colors duration-300 text-sm font-semibold">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i data-lucide="menu" class="w-6 h-6 text-slate-800"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white border-t border-slate-200">
+            <a href="#about" class="block py-2 text-slate-600">About</a>
+            <a href="#experience" class="block py-2 text-slate-600">Experience</a>
+            <a href="#skills" class="block py-2 text-slate-600">Skills</a>
+            <a href="#projects" class="block py-2 text-slate-600">Projects</a>
+            <a href="#contact" class="block py-2 text-slate-600">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 pt-20 md:pt-28">
+        <!-- Hero Section -->
+        <section id="home" class="min-h-[80vh] flex flex-col justify-center text-center fade-in-section">
+            <div class="max-w-4xl mx-auto">
+                <p class="text-blue-600 font-semibold mb-2">Hey, I'm Palak Tanwar.</p>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 mb-6">
+                    I transform complex data into <span class="text-gradient">impactful</span> and <span class="text-gradient">actionable</span> insights.
+                </h1>
+                <p class="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-8">
+                    Data Analytics Engineering graduate student at Northeastern University. I specialize in data analysis, machine learning, and creating compelling visualizations.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="#projects" class="bg-blue-600 text-white font-semibold px-5 py-2.5 rounded-md hover:bg-blue-700 transition-colors duration-300">
+                        View My Projects
+                    </a>
+                    <a href="#contact" class="bg-slate-100 text-slate-700 font-semibold px-5 py-2.5 rounded-md hover:bg-slate-200 transition-colors duration-300 flex items-center gap-2">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-20 lg:py-32 fade-in-section">
+            <div class="grid md:grid-cols-5 gap-16 items-center">
+                 <div class="md:col-span-3">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">About Me</h2>
+                    <p class="text-slate-600 mb-4 text-lg">
+                        Hello! I'm Palak, a Data Analytics Engineering student at Northeastern University with a background in Computer Engineering. I have a passion for uncovering stories hidden within data and a proven track record of using data-driven insights to solve real-world problems.
+                    </p>
+                    <p class="text-slate-600 mb-6 text-lg">
+                        My experience as a Data Analyst & Strategist involved developing ETL pipelines, conducting in-depth exploratory data analysis, and creating visualizations to drive strategic decisions. I am dedicated to continuously learning and applying new technologies to build efficient and scalable data solutions.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="github" class="w-7 h-7"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="linkedin" class="w-7 h-7"></i></a>
+                        <a href="mailto:tanwar.pa@northeastern.edu" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="mail" class="w-7 h-7"></i></a>
+                        <a href="https://wa.me/16174046023" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="message-circle" class="w-7 h-7"></i></a>
+                    </div>
+                </div>
+                <div class="md:col-span-2">
+                    <img src="assets/portrait.jpg" alt="Palak Tanwar Portrait" class="rounded-lg shadow-lg w-full h-auto object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section id="experience" class="py-20 lg:py-32 bg-white rounded-xl fade-in-section">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">Work Experience</h2>
+                <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-12">
+                    My professional journey in data analysis and strategy.
+                </p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="relative pl-8 border-l-2 border-slate-200">
+                    <!-- Job 1 -->
+                    <div class="mb-12">
+                         <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-2 mt-1.5"></div>
+                         <p class="text-sm font-medium text-slate-500">June 2020 - July 2024</p>
+                         <h3 class="text-xl font-bold mt-1 text-slate-800">Data Analyst & Strategist</h3>
+                         <p class="text-md text-slate-600">Chaitanya Charitable Trust, Gujarat, India</p>
+                         <ul class="mt-4 space-y-2 text-slate-500 list-disc list-inside">
+                            <li>Developed ETL pipelines and conducted exploratory data analysis on survey data.</li>
+                            <li>Designed reports using data visualization to track campaign performance, increasing audience reach by 35%.</li>
+                            <li>Collaborated with local communities to enhance campaign participation by 30%.</li>
+                         </ul>
+                    </div>
+                    <!-- Job 2 -->
+                    <div>
+                         <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-2 mt-1.5"></div>
+                         <p class="text-sm font-medium text-slate-500">May 2022 - April 2025</p>
+                         <h3 class="text-xl font-bold mt-1 text-slate-800">Business Analyst (Part-Time)</h3>
+                         <p class="text-md text-slate-600">Trident Analytical Solutions Pvt. Ltd., Noida, India</p>
+                         <ul class="mt-4 space-y-2 text-slate-500 list-disc list-inside">
+                            <li>Analyzed business requirements and streamlined workflows through stakeholder meetings.</li>
+                            <li>Designed automated reports in Excel and Power BI, improving project efficiency.</li>
+                            <li>Facilitated cross-functional team communication between business and technical teams.</li>
+                         </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 lg:py-32 text-center fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">My Technical Skills</h2>
+            <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-12">
+                I leverage a variety of modern technologies to analyze data and build high-quality solutions.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">R</span>
+                <span class="skill-tag">SQL (MySQL)</span>
+                <span class="skill-tag">Pandas</span>
+                <span class="skill-tag">NumPy</span>
+                <span class="skill-tag">Scikit-learn</span>
+                <span class="skill-tag">PCA</span>
+                <span class="skill-tag">Clustering</span>
+                <span class="skill-tag">Regression</span>
+                <span class="skill-tag">Tableau</span>
+                <span class="skill-tag">Power BI</span>
+                <span class="skill-tag">Jupyter Notebook</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">C</span>
+                <span class="skill-tag">C++</span>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 lg:py-32 bg-slate-50 rounded-xl fade-in-section">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">Featured Projects</h2>
+                <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-12">
+                    Here are some of the projects I'm proud of. Each one represents a unique data challenge I was excited to tackle.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="card rounded-lg overflow-hidden group">
+                    <img src="assets/project-1.jpg" alt="Mental Health Project Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-slate-800">Mental Health Access Patterns</h3>
+                        <p class="text-slate-600 mb-4">Analyzed 10,000+ survey records to uncover trends in medication usage and disparities in mental health care access.</p>
+                        <a href="#" class="font-semibold text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-1">View on GitHub <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card rounded-lg overflow-hidden group">
+                    <img src="assets/project-2.jpg" alt="Healthcare Analytics Project Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-slate-800">MIMIC-III Patient Data Insights</h3>
+                        <p class="text-slate-600 mb-4">Utilized PCA and clustering on ICU data to segment patients and predict readmission using logistic regression.</p>
+                        <a href="#" class="font-semibold text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-1">View on GitHub <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="card rounded-lg overflow-hidden group">
+                    <img src="assets/project-3.jpg" alt="Community Data Project Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-slate-800">Community Data & Strategy</h3>
+                        <p class="text-slate-600 mb-4">Developed ETL pipelines and used data visualization to identify community needs, increasing audience reach by 35%.</p>
+                        <a href="#" class="font-semibold text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-1">Read Case Study <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 lg:py-32 text-center fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">Get In Touch</h2>
+            <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-12">
+                I'm currently seeking new opportunities and collaborations. Feel free to reach out if you have a project in mind or just want to connect.
+            </p>
+            <div class="max-w-xl mx-auto">
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-slate-700 text-left">Full Name</label>
+                        <input type="text" name="name" id="name" required class="mt-1 block w-full px-4 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-700 text-left">Email Address</label>
+                        <input type="email" name="email" id="email" required class="mt-1 block w-full px-4 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-slate-700 text-left">Message</label>
+                        <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-4 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200">
+        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="github" class="w-6 h-6"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                <a href="mailto:tanwar.pa@northeastern.edu" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="mail" class="w-6 h-6"></i></a>
+                <a href="https://wa.me/16174046023" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="message-circle" class="w-6 h-6"></i></a>
+            </div>
+            <p>&copy; 2025 Palak Tanwar. Built with care in Boston, MA.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Fade-in animation on scroll
+        const faders = document.querySelectorAll('.fade-in-section');
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+    </script>
+</body>
+</html>
+
+
