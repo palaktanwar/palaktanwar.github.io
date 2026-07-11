@@ -6,335 +6,422 @@
     <title>Palak Tanwar | Data Analytics Engineering</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='.9em' font-size='64'%3E🐈%3C/text%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        sans: ['"IBM Plex Sans"', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    },
+                    colors: {
+                        ink: '#14181F',
+                        paper: '#F2F4F6',
+                        panel: '#E4E8EC',
+                        signal: '#E0973C',
+                        verify: '#2B7A6F',
+                        line: '#C7CDD3',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Light gray background */
-            color: #1e293b; /* Dark slate text */
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: #F2F4F6;
+            color: #14181F;
         }
-        .text-gradient {
-            background: linear-gradient(to right, #2563eb, #7c3aed);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .skill-tag {
-            background-color: rgba(59, 130, 246, 0.1);
-            color: #2563eb;
-            padding: 0.375rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        .skill-tag:hover {
-            background-color: rgba(59, 130, 246, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.1);
-        }
-        .card {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: #3b82f6;
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.07);
-        }
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
+        mark { background: none; color: inherit; }
+        ::selection { background: #E0973C; color: #14181F; }
+
+        .nav-link { position: relative; }
         .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -4px;
-            left: 50%;
-            background-color: #3b82f6;
-            transition: all 0.3s ease;
-        }
-        .nav-link:hover {
-            color: #3b82f6;
-        }
-        .nav-link:hover::after {
-            width: 100%;
+            bottom: -6px;
             left: 0;
+            background-color: #E0973C;
+            transition: width 0.25s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .token {
+            display: inline-block;
+            border: 1px solid #C7CDD3;
+            padding: 0.3rem 0.7rem;
+            border-radius: 2px;
+            font-size: 0.8rem;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+        .token:hover {
+            border-color: #E0973C;
+            background-color: rgba(224, 151, 60, 0.08);
         }
 
-        /* Scrollbar styles */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #e2e8f0;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #94a3b8;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
+        .field-row + .field-row { border-top: 1px solid #C7CDD3; }
+
+        li.entry { position: relative; padding-left: 1.15rem; }
+        li.entry::before {
+            content: '\2014';
+            position: absolute;
+            left: 0;
+            color: #E0973C;
         }
 
-        /* Fade-in animation */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #E4E8EC; }
+        ::-webkit-scrollbar-thumb { background: #14181F; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #2B7A6F; }
+
+        *:focus-visible {
+            outline: 2px solid #E0973C;
+            outline-offset: 2px;
+        }
+
         .fade-in-section {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(16px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .fade-in-section.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto !important; }
+            .fade-in-section {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased bg-paper">
+
+    <!--
+         /\_/\
+        ( o.o )  you found the cat.
+         > ^ <
+    -->
 
     <!-- Header & Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold"><span class="text-gradient font-bold text-black text-3xl md:text-4xl leading-none">Palak Tanwar</span></a>
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#about" class="nav-link text-slate-600 hover:text-blue-600">About</a>
-                <a href="#experience" class="nav-link text-slate-600 hover:text-blue-600">Experience</a>
-                <a href="#skills" class="nav-link text-slate-600 hover:text-blue-600">Skills</a>
-                <a href="#projects" class="nav-link text-slate-600 hover:text-blue-600">Projects</a>
-                <a href="#contact" class="nav-link text-slate-600 hover:text-blue-600">Contact</a>
-                <!-- <a href="#contact" class="px-5 py-2 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition-colors duration-300 text-sm font-semibold">Contact</a> -->
-                <a href="resume/PalakTanwarResume.pdf" target="_blank" rel="noopener noreferrer" class="px-5 py-2 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition-colors duration-300 text-sm font-semibold">Resume</a>
+    <header class="fixed top-0 left-0 right-0 z-50 bg-paper/90 backdrop-blur-md border-b border-line">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 bg-signal inline-block"></span>
+                <span class="font-display font-semibold text-ink text-lg md:text-xl tracking-tight uppercase">Palak Tanwar</span>
+            </a>
+            <nav class="hidden md:flex space-x-8 items-center font-mono text-xs uppercase tracking-[0.15em]">
+                <a href="#about" class="nav-link text-ink/60 hover:text-ink">About</a>
+                <a href="#experience" class="nav-link text-ink/60 hover:text-ink">Experience</a>
+                <a href="#skills" class="nav-link text-ink/60 hover:text-ink">Skills</a>
+                <a href="#projects" class="nav-link text-ink/60 hover:text-ink">Projects</a>
+                <a href="#contact" class="nav-link text-ink/60 hover:text-ink">Contact</a>
+                <a href="resume/PalakTanwarResume.pdf" target="_blank" rel="noopener noreferrer" class="border border-ink text-ink px-4 py-2 hover:bg-ink hover:text-paper transition-colors duration-200">Resume</a>
             </nav>
             <button id="mobile-menu-button" class="md:hidden">
-                <i data-lucide="menu" class="w-6 h-6 text-slate-800"></i>
+                <i data-lucide="menu" class="w-6 h-6 text-ink"></i>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white border-t border-slate-200">
-            <a href="#about" class="block py-2 text-slate-600">About</a>
-            <a href="#experience" class="block py-2 text-slate-600">Experience</a>
-            <a href="#skills" class="block py-2 text-slate-600">Skills</a>
-            <a href="#projects" class="block py-2 text-slate-600">Projects</a>
-            <a href="#contact" class="block py-2 text-slate-600">Contact</a>
-            <a href="resume/PalakTanwarResume.pdf" class="block py-2 text-slate-600">Resume</a>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-paper border-t border-line font-mono text-sm uppercase tracking-wide">
+            <a href="#about" class="block py-2 text-ink/70">About</a>
+            <a href="#experience" class="block py-2 text-ink/70">Experience</a>
+            <a href="#skills" class="block py-2 text-ink/70">Skills</a>
+            <a href="#projects" class="block py-2 text-ink/70">Projects</a>
+            <a href="#contact" class="block py-2 text-ink/70">Contact</a>
+            <a href="resume/PalakTanwarResume.pdf" class="block py-2 text-ink/70">Resume</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 pt-20 md:pt-28">
-        <!-- Hero Section -->
-        <section id="home" class="min-h-[80vh] flex flex-col justify-center text-center fade-in-section">
-            <div class="max-w-4xl mx-auto">
-                <p class="text-blue-600 font-semibold mb-2">Hey, I'm Palak Tanwar.</p>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 mb-6">
-                    I transform complex data into <span class="text-gradient">impactful</span> and <span class="text-gradient">actionable</span> insights.
-                </h1>
-                <p class="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-8">
-                    Data Analytics Engineering graduate student at Northeastern University. I specialize in data analysis, machine learning, and creating compelling visualizations.
-                </p>
-                <div class="flex justify-center gap-4">
-                    <a href="#projects" class="bg-blue-600 text-white font-semibold px-5 py-2.5 rounded-md hover:bg-blue-700 transition-colors duration-300">
-                        View My Projects
-                    </a>
-                    <a href="#contact" class="bg-slate-100 text-slate-700 font-semibold px-5 py-2.5 rounded-md hover:bg-slate-200 transition-colors duration-300 flex items-center gap-2">
-                        <i data-lucide="mail" class="w-5 h-5"></i>
-                        Get In Touch
-                    </a>
-                </div>
-            </div>
-        </section>
+    <main>
+        <!-- Hero + About Section (dark cover band, sticky photo, scrolling text) -->
+        <section id="home" class="bg-ink text-paper pt-32 pb-24 md:pb-32 fade-in-section">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid md:grid-cols-5 gap-12 lg:gap-20">
+                    <div class="md:col-span-3">
+                        <div class="min-h-[60vh] flex flex-col justify-center">
+                            <p class="font-mono text-xs md:text-sm tracking-[0.25em] uppercase text-white/50 mb-6"><span class="text-signal">// </span>Source</p>
+                            <h1 class="font-display font-semibold text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight mb-6">
+                                I turn messy data into systems that are <span class="text-signal">auditable, not a black box</span>.
+                            </h1>
+                            <p class="text-lg md:text-xl text-white/70 max-w-xl mb-10 leading-relaxed">
+                                Computer Engineer and Data Analytics Engineering MS candidate at Northeastern University (GPA 3.94/4.0). I build backend services, REST APIs, and data pipelines, with a specialization in Machine Learning &amp; GenAI systems.
+                            </p>
+                            <div class="flex flex-wrap gap-4 font-mono text-sm uppercase tracking-wide">
+                                <a href="#projects" class="bg-signal text-ink px-6 py-3 font-semibold hover:bg-white transition-colors duration-200">View Projects &rarr;</a>
+                                <a href="#contact" class="border border-white/30 text-paper px-6 py-3 hover:border-white transition-colors duration-200">Say Hello</a>
+                            </div>
+                        </div>
 
-        <!-- About Me Section -->
-        <section id="about" class="py-20 lg:py-32 fade-in-section">
-            <div class="grid md:grid-cols-5 gap-16 items-center">
-                 <div class="md:col-span-3">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">About Me</h2>
-                    <p class="text-slate-600 mb-4 text-lg">
-                        Hello! I'm Palak, a Data Analytics Engineering student at Northeastern University with a background in Computer Engineering. I have a passion for uncovering stories hidden within data and a proven track record of using data-driven insights to solve real-world problems.
-                    </p>
-                    <p class="text-slate-600 mb-6 text-lg">
-                        My experience as a Data Analyst & Strategist involved developing ETL pipelines, conducting in-depth exploratory data analysis, and creating visualizations to drive strategic decisions. I am dedicated to continuously learning and applying new technologies to build efficient and scalable data solutions.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/palaktanwar" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="github" class="w-7 h-7"></i></a>
-                        <a href="https://www.linkedin.com/in/ptanwar/" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="linkedin" class="w-7 h-7"></i></a>
-                        <a href="mailto:tanwar.pa@northeastern.edu" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="mail" class="w-7 h-7"></i></a>
-                        <a href="https://wa.me/16174046023" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="message-circle" class="w-7 h-7"></i></a>
+                        <div id="about" class="pt-24 md:pt-32 scroll-mt-28">
+                            <p class="font-mono text-xs md:text-sm tracking-[0.25em] uppercase text-white/50 mb-6"><span class="text-signal">// </span>Profile</p>
+                            <h2 class="font-display font-semibold text-2xl md:text-3xl mb-6">About</h2>
+                            <div class="space-y-5 text-white/70 text-lg leading-relaxed max-w-2xl">
+                                <p>I'm a Data Analytics Engineering graduate student at Northeastern University with a Computer Engineering background from Thapar Institute of Engineering &amp; Technology. I build software end to end &mdash; REST APIs, data pipelines, and ML/GenAI systems &mdash; grounded in a strong CS foundation of OOP, data structures, and algorithms.</p>
+                                <p>My experience as a Data Analyst &amp; Strategist at Chaitanya Charitable Trust involved owning data end to end for community programs: pulling and joining data with SQL, cleaning messy survey inputs, and turning them into reporting dashboards leadership actually relied on. Today I'm focused on backend engineering, MLOps, and applying LLMs to production systems.</p>
+                                <p>Outside of coursework, I'm building an end-to-end MLOps platform, exploring NLP architectures from first principles, and looking for full-time roles starting January 2027.</p>
+                            </div>
+                            <div class="flex items-center space-x-5 mt-8">
+                                <a href="https://github.com/palaktanwar" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-white/50 hover:text-signal transition-colors"><svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                                <a href="https://www.linkedin.com/in/ptanwar/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-white/50 hover:text-signal transition-colors"><svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                                <a href="mailto:tanwar.pa@northeastern.edu" class="inline-flex items-center text-white/50 hover:text-signal transition-colors"><i data-lucide="mail" class="w-6 h-6"></i></a>
+                                <a href="https://wa.me/16174046023" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-white/50 hover:text-signal transition-colors"><i data-lucide="message-circle" class="w-6 h-6"></i></a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="md:col-span-2">
-                    <img src="assets/portrait.jpg" alt="Palak Tanwar Portrait" class="rounded-lg shadow-lg w-full h-auto object-cover">
+
+                    <div class="md:col-span-2">
+                        <div class="md:sticky md:top-28">
+                            <div class="border border-white/15 p-2">
+                                <img src="assets/portrait.jpg" alt="Palak Tanwar Portrait" class="w-full h-auto object-cover">
+                            </div>
+                            <p class="font-mono text-xs uppercase tracking-[0.2em] text-white/40 mt-3">Palak Tanwar &mdash; Boston, MA</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Work Experience Section -->
-        <section id="experience" class="py-20 lg:py-32 bg-white rounded-xl fade-in-section">
-            <div class="text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">Work Experience</h2>
-                <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-12">
-                    My professional journey in data analysis and strategy.
+        <section id="experience" class="bg-paper py-24 md:py-32 fade-in-section">
+            <div class="max-w-3xl mx-auto px-6">
+                <p class="font-mono text-xs md:text-sm tracking-[0.25em] uppercase text-ink/40 mb-6"><span class="text-signal">// </span>Validate</p>
+                <h2 class="font-display font-semibold text-3xl md:text-4xl mb-4">Work Experience</h2>
+                <p class="text-lg text-ink/60 mb-12">
+                    One role, in depth &mdash; the data programs I owned end to end.
                 </p>
-            </div>
-            <div class="max-w-3xl mx-auto">
-                <div class="relative pl-8 border-l-2 border-slate-200">
-                    <!-- Job 1 -->
-                    <div class="mb-12">
-                         <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-2 mt-1.5"></div>
-                         <p class="text-sm font-medium text-slate-500">June 2020 - July 2024</p>
-                         <h3 class="text-xl font-bold mt-1 text-slate-800">Data Analyst & Strategist</h3>
-                         <p class="text-md text-slate-600">Chaitanya Charitable Trust, Gujarat, India</p>
-                         <ul class="mt-4 space-y-2 text-slate-500 list-disc list-inside">
-                            <li>Developed ETL pipelines and conducted exploratory data analysis on survey data.</li>
-                            <li>Designed reports using data visualization to track campaign performance, increasing audience reach by 35%.</li>
-                            <li>Collaborated with local communities to enhance campaign participation by 30%.</li>
-                         </ul>
+                <div class="border border-line bg-white p-8 md:p-10">
+                    <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1 font-mono text-xs uppercase tracking-wide text-ink/40">
+                        <span>Jun 2020 &ndash; Jul 2024</span>
                     </div>
-                    <!-- Job 2 -->
-                    <div>
-                         <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-2 mt-1.5"></div>
-                         <p class="text-sm font-medium text-slate-500">May 2022 - April 2025</p>
-                         <h3 class="text-xl font-bold mt-1 text-slate-800">Business Analyst (Part-Time)</h3>
-                         <p class="text-md text-slate-600">Trident Analytical Solutions Pvt. Ltd., Noida, India</p>
-                         <ul class="mt-4 space-y-2 text-slate-500 list-disc list-inside">
-                            <li>Analyzed business requirements and streamlined workflows through stakeholder meetings.</li>
-                            <li>Designed automated reports in Excel and Power BI, improving project efficiency.</li>
-                            <li>Facilitated cross-functional team communication between business and technical teams.</li>
-                         </ul>
-                    </div>
+                    <h3 class="font-display font-semibold text-xl md:text-2xl mt-2 text-ink">Data Analyst &amp; Strategist</h3>
+                    <p class="font-mono text-sm uppercase tracking-wide text-verify mb-6">Chaitanya Charitable Trust &mdash; Gujarat, India</p>
+                    <ul class="space-y-3 text-ink/75 leading-relaxed">
+                        <li class="entry">Owned data end to end for community programs: pulled and joined data with SQL, cleaned messy survey inputs in Python and spreadsheets, and turned them into trusted reporting dashboards leadership relied on.</li>
+                        <li class="entry">Translated vague, on-the-ground needs from <strong class="text-ink">1,000+ stakeholders</strong> into clear data definitions and metrics, then used the analysis to decide which campaigns to run and where to focus, growing audience reach <strong class="text-ink">35%</strong>.</li>
+                        <li class="entry">Drove cross-functional buy-in by explaining the reasoning behind the numbers in plain language, lifting program participation <strong class="text-ink">30%</strong>.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-
         <!-- Skills Section -->
-        <section id="skills" class="py-20 lg:py-32 text-center fade-in-section">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">My Technical Skills</h2>
-            <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-12">
-                I leverage a variety of modern technologies to analyze data and build high-quality solutions.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">R</span>
-                <span class="skill-tag">SQL (MySQL)</span>
-                <span class="skill-tag">Pandas</span>
-                <span class="skill-tag">NumPy</span>
-                <span class="skill-tag">Scikit-learn</span>
-                <span class="skill-tag">PCA</span>
-                <span class="skill-tag">Clustering</span>
-                <span class="skill-tag">Regression</span>
-                <span class="skill-tag">Tableau</span>
-                <span class="skill-tag">Power BI</span>
-                <span class="skill-tag">Jupyter Notebook</span>
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">C</span>
-                <span class="skill-tag">C++</span>
+        <section id="skills" class="bg-panel py-24 md:py-32 fade-in-section">
+            <div class="max-w-4xl mx-auto px-6">
+                <p class="font-mono text-xs md:text-sm tracking-[0.25em] uppercase text-ink/40 mb-6"><span class="text-signal">// </span>Schema</p>
+                <h2 class="font-display font-semibold text-3xl md:text-4xl mb-4">Technical Skills</h2>
+                <p class="text-lg text-ink/60 mb-12">
+                    The stack behind the systems &mdash; languages, foundations, infrastructure, and ML/GenAI tooling.
+                </p>
+                <div class="border-y border-line">
+                    <div class="field-row py-7 grid md:grid-cols-[200px_1fr] gap-3 md:gap-8 items-baseline">
+                        <p class="font-mono text-xs md:text-sm uppercase tracking-[0.15em] text-verify">Languages</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="token">Python</span>
+                            <span class="token">C</span>
+                            <span class="token">C++</span>
+                            <span class="token">SQL (MySQL, PostgreSQL)</span>
+                            <span class="token">R</span>
+                            <span class="token">NoSQL (MongoDB, Neo4j)</span>
+                        </div>
+                    </div>
+                    <div class="field-row py-7 grid md:grid-cols-[200px_1fr] gap-3 md:gap-8 items-baseline">
+                        <p class="font-mono text-xs md:text-sm uppercase tracking-[0.15em] text-verify">CS Foundations</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="token">Object-Oriented Design</span>
+                            <span class="token">Data Structures &amp; Algorithms</span>
+                            <span class="token">REST</span>
+                            <span class="token">Client-Server Architecture</span>
+                            <span class="token">Data Modeling &amp; Validation</span>
+                        </div>
+                    </div>
+                    <div class="field-row py-7 grid md:grid-cols-[200px_1fr] gap-3 md:gap-8 items-baseline">
+                        <p class="font-mono text-xs md:text-sm uppercase tracking-[0.15em] text-verify">Backend &amp; Cloud</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="token">FastAPI</span>
+                            <span class="token">MySQL</span>
+                            <span class="token">PostgreSQL</span>
+                            <span class="token">MongoDB</span>
+                            <span class="token">Neo4j</span>
+                            <span class="token">Docker</span>
+                            <span class="token">Git</span>
+                            <span class="token">Unix/Linux</span>
+                            <span class="token">GCP (BigQuery, GCS)</span>
+                            <span class="token">Airflow</span>
+                            <span class="token">MLflow</span>
+                        </div>
+                    </div>
+                    <div class="field-row py-7 grid md:grid-cols-[200px_1fr] gap-3 md:gap-8 items-baseline">
+                        <p class="font-mono text-xs md:text-sm uppercase tracking-[0.15em] text-verify">ML / GenAI &amp; Viz</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="token">LLMs (Google Gemini)</span>
+                            <span class="token">NLP</span>
+                            <span class="token">Prompt Engineering</span>
+                            <span class="token">NL to SQL</span>
+                            <span class="token">PyTorch</span>
+                            <span class="token">TensorFlow</span>
+                            <span class="token">Scikit-learn</span>
+                            <span class="token">XGBoost</span>
+                            <span class="token">GloVe / Embeddings</span>
+                            <span class="token">SHAP</span>
+                            <span class="token">SMOTE</span>
+                            <span class="token">Power BI</span>
+                            <span class="token">QuickSight</span>
+                            <span class="token">Tableau</span>
+                            <span class="token">Grafana</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="py-20 lg:py-32 bg-slate-50 rounded-xl fade-in-section">
-            <div class="text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">Featured Projects</h2>
-                <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-12">
-                    Here are some of the projects I'm proud of. Each one represents a unique data challenge I was excited to tackle.
+        <section id="projects" class="bg-paper py-24 md:py-32 fade-in-section">
+            <div class="max-w-6xl mx-auto px-6">
+                <p class="font-mono text-xs md:text-sm tracking-[0.25em] uppercase text-ink/40 mb-6"><span class="text-signal">// </span>Output</p>
+                <h2 class="font-display font-semibold text-3xl md:text-4xl mb-4">Featured Projects</h2>
+                <p class="text-lg text-ink/60 mb-12">
+                    A selection spanning NLP from first principles, production MLOps, and applied LLM systems.
                 </p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="card rounded-lg overflow-hidden group">
-                    <img src="assets/project1.png" alt="Mental Health Project Screenshot" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-slate-800">Mental Health Access Patterns</h3>
-                        <p class="text-slate-600 mb-4">Analyzed 10,000+ survey records to uncover trends in medication usage and disparities in mental health care access.</p>
-                        <a href="https://github.com/palaktanwar/Computation-Visualization-IE6600" class="font-semibold text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-1">View on GitHub <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-                    </div>
-                </div>
 
-                <!-- Project 2 -->
-                <div class="card rounded-lg overflow-hidden group">
-                    <img src="assets/project2.png" alt="Healthcare Analytics Project Screenshot" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-slate-800">MIMIC-III Patient Data Insights</h3>
-                        <p class="text-slate-600 mb-4">Utilized PCA and clustering on ICU data to segment patients and predict readmission using logistic regression.</p>
-                        <a href="https://github.com/palaktanwar/Foundations-Data-Analytics-IE6400" class="font-semibold text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-1">View on GitHub <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-                    </div>
-                </div>
+                <div class="grid md:grid-cols-2 gap-px bg-line border border-line">
 
-                <!-- Project 3 -->
-                <div class="card rounded-lg overflow-hidden group">
-                    <img src="assets/project3.png" alt="Community Data Project Screenshot" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-slate-800">Community Data & Strategy</h3>
-                        <p class="text-slate-600 mb-4">Developed ETL pipelines and used data visualization to identify community needs, increasing audience reach by 35%.</p>
-                        <a href="#contact" class="font-semibold text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-1">Reach out to learn more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    <!-- Foresight ML -->
+                    <div class="bg-white p-8 flex flex-col">
+                        <p class="inline-flex w-fit items-center gap-2 font-mono text-xs uppercase tracking-wide text-ink bg-signal px-2.5 py-1 mb-4">&#9733; 1st Place &mdash; 6th MLOps Expo @ Google Cambridge</p>
+                        <div class="flex items-start justify-between gap-4 mb-1">
+                            <h3 class="font-display font-semibold text-xl text-ink flex items-center gap-2"><i data-lucide="award" class="w-5 h-5 text-ink/40 shrink-0"></i>Foresight ML &mdash; Corporate Financial Distress Early Warning System</h3>
+                            <span class="font-mono text-xs text-ink/40 whitespace-nowrap mt-1">Apr 2026</span>
+                        </div>
+                        <p class="font-mono text-[11px] uppercase tracking-wide text-ink/40 mb-4">XGBoost &middot; LSTM/GRU &middot; BigQuery &middot; SHAP &middot; MLOps</p>
+                        <ul class="text-ink/75 text-sm space-y-2 mb-6 flex-1">
+                            <li class="entry">Awarded 1st out of 30 teams, judged on system clarity, production-readiness, deployment pipelines, and engineering depth.</li>
+                            <li class="entry">Built an end-to-end pipeline flagging companies at risk of financial distress <strong class="text-ink">6&ndash;12 months ahead</strong>, fusing SEC filings (10-K/10-Q) with FRED macro indicators for <strong class="text-ink">10,000+ U.S. public companies</strong>.</li>
+                            <li class="entry">Engineered <strong class="text-ink">45+ features</strong> in BigQuery and pandas; trained XGBoost and LSTM/GRU models tuned for high recall so few at-risk firms slip through.</li>
+                            <li class="entry">Owned the end-to-end deployment layer &mdash; model versioning, inference schema, manifest-based lineage &mdash; plus SHAP explainability and cross-sector bias checks, keeping the risk score auditable, not a black box.</li>
+                        </ul>
+                        <a href="https://github.com/Foresight-ML/foresight_ml" target="_blank" rel="noopener noreferrer" class="font-mono text-xs uppercase tracking-wide text-verify hover:text-ink inline-flex items-center gap-1 mt-auto">Source <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
                     </div>
+
+                    <!-- LLM-Powered MLOps Platform -->
+                    <div class="bg-white p-8 flex flex-col">
+                        <div class="flex items-start justify-between gap-4 mb-1">
+                            <h3 class="font-display font-semibold text-xl text-ink flex items-center gap-2"><i data-lucide="server" class="w-5 h-5 text-ink/40 shrink-0"></i>LLM-Powered MLOps Platform &amp; NL Query Assistant</h3>
+                            <span class="font-mono text-xs text-ink/40 whitespace-nowrap mt-1">Dec 2025</span>
+                        </div>
+                        <p class="font-mono text-[11px] uppercase tracking-wide text-ink/40 mb-4">FastAPI &middot; Google Gemini &middot; MySQL &middot; Neo4j &middot; Streamlit</p>
+                        <ul class="text-ink/75 text-sm space-y-2 mb-6 flex-1">
+                            <li class="entry">Built a FastAPI layer wrapping a Google Gemini natural-language-to-SQL assistant behind a <strong class="text-ink">multistage validation pipeline</strong> that enforces read-only access and blocks unsafe queries.</li>
+                            <li class="entry">Designed a hybrid <strong class="text-ink">MySQL + Neo4j</strong> backend tracking datasets, experiments, Git commit hashes, and model artifacts for fully reproducible lineage.</li>
+                            <li class="entry">Shipped a Streamlit dashboard that uses LLMs to auto-generate plain-English summaries of model performance and KPIs for cross-functional teams.</li>
+                        </ul>
+                        <a href="https://github.com/palaktanwar" target="_blank" rel="noopener noreferrer" class="font-mono text-xs uppercase tracking-wide text-verify hover:text-ink inline-flex items-center gap-1 mt-auto">Source <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
+                    </div>
+
+                    <!-- Sentiment Classification -->
+                    <div class="bg-white p-8 flex flex-col">
+                        <div class="flex items-start justify-between gap-4 mb-1">
+                            <h3 class="font-display font-semibold text-xl text-ink flex items-center gap-2"><i data-lucide="brain" class="w-5 h-5 text-ink/40 shrink-0"></i>Sentiment Classification with Classical &amp; Neural NLP Models</h3>
+                            <span class="font-mono text-xs text-ink/40 whitespace-nowrap mt-1">Jun 2026</span>
+                        </div>
+                        <p class="font-mono text-[11px] uppercase tracking-wide text-ink/40 mb-4">Python &middot; PyTorch &middot; GloVe &middot; CNN &middot; NLP</p>
+                        <ul class="text-ink/75 text-sm space-y-2 mb-6 flex-1">
+                            <li class="entry">Implemented perceptron and logistic-regression text classifiers <strong class="text-ink">from scratch</strong> (no ML libraries), improving test accuracy from <strong class="text-ink">76% to 85%</strong> via bigram and custom feature engineering.</li>
+                            <li class="entry">Built a Deep Averaging Network with pretrained GloVe embeddings and a CNN with multi-width convolution filters, reaching <strong class="text-ink">90% test accuracy</strong>, diagnosing overfitting from loss curves.</li>
+                            <li class="entry">Re-engineered training to mini-batch on GPU for a <strong class="text-ink">20x speedup</strong> with no accuracy loss.</li>
+                        </ul>
+                        <a href="https://github.com/palaktanwar" target="_blank" rel="noopener noreferrer" class="font-mono text-xs uppercase tracking-wide text-verify hover:text-ink inline-flex items-center gap-1 mt-auto">Source <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
+                    </div>
+
+                    <!-- Patient Cohort & Readmission Analytics -->
+                    <div class="bg-white p-8 flex flex-col">
+                        <div class="flex items-start justify-between gap-4 mb-1">
+                            <h3 class="font-display font-semibold text-xl text-ink flex items-center gap-2"><i data-lucide="activity" class="w-5 h-5 text-ink/40 shrink-0"></i>Patient Cohort &amp; Readmission Analytics &mdash; MIMIC-III</h3>
+                            <span class="font-mono text-xs text-ink/40 whitespace-nowrap mt-1">Feb 2025</span>
+                        </div>
+                        <p class="font-mono text-[11px] uppercase tracking-wide text-ink/40 mb-4">PCA &middot; t-SNE &middot; K-Means &middot; Clustering</p>
+                        <img src="assets/project2.png" alt="MIMIC-III Patient Cohort Analytics Screenshot" class="w-full h-32 object-cover border border-line mb-4">
+                        <ul class="text-ink/75 text-sm space-y-2 mb-6 flex-1">
+                            <li class="entry">Worked with real ICU patient records under strict privacy handling to segment patients and predict hospital readmissions, an operational metric that drives healthcare cost and care decisions.</li>
+                            <li class="entry">Reduced high-dimensional clinical data with PCA and t-SNE, then used K-means and hierarchical clustering to surface distinct patient cohorts.</li>
+                        </ul>
+                        <a href="https://github.com/palaktanwar/Foundations-Data-Analytics-IE6400" target="_blank" rel="noopener noreferrer" class="font-mono text-xs uppercase tracking-wide text-verify hover:text-ink inline-flex items-center gap-1 mt-auto">Source <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
+                    </div>
+
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 lg:py-32 text-center fade-in-section">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">Get In Touch</h2>
-            <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-12">
-                I'm currently seeking new opportunities and collaborations. Feel free to reach out if you have a project in mind or just want to connect.
-            </p>
-            <div class="max-w-2xl mx-auto">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <a href="mailto:tanwar.pa@northeastern.edu" class="card p-5 rounded-lg hover:border-blue-600 transition-colors flex items-center justify-between">
+        <section id="contact" class="bg-ink text-paper py-24 md:py-32 fade-in-section">
+            <div class="max-w-4xl mx-auto px-6">
+                <p class="font-mono text-xs md:text-sm tracking-[0.25em] uppercase text-white/50 mb-6"><span class="text-signal">// </span>Sink</p>
+                <h2 class="font-display font-semibold text-3xl md:text-4xl mb-4">Get In Touch</h2>
+                <p class="text-lg text-white/70 mb-12">
+                    Seeking full-time opportunities starting January 2027. Reach out if you have a role, a project, or just want to connect.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10 border border-white/10">
+                    <a href="mailto:tanwar.pa@northeastern.edu" class="bg-ink p-6 hover:bg-white/5 transition-colors flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                            <i data-lucide="mail" class="w-6 h-6 text-blue-600"></i>
+                            <i data-lucide="mail" class="w-5 h-5 text-signal"></i>
                             <div class="text-left">
-                                <p class="font-semibold text-slate-800">Email</p>
-                                <p class="text-sm text-slate-500">tanwar.pa@northeastern.edu</p>
+                                <p class="font-mono text-xs uppercase tracking-wide text-white/40">Email</p>
+                                <p class="text-sm text-paper">tanwar.pa@northeastern.edu</p>
                             </div>
                         </div>
-                        <i data-lucide="arrow-right" class="w-5 h-5 text-slate-400"></i>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-white/30"></i>
                     </a>
-                    <a href="tel:+16174046023" class="card p-5 rounded-lg hover:border-blue-600 transition-colors flex items-center justify-between">
+                    <a href="tel:+16174046023" class="bg-ink p-6 hover:bg-white/5 transition-colors flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                            <i data-lucide="phone" class="w-6 h-6 text-blue-600"></i>
+                            <i data-lucide="phone" class="w-5 h-5 text-signal"></i>
                             <div class="text-left">
-                                <p class="font-semibold text-slate-800">Phone</p>
-                                <p class="text-sm text-slate-500">+1 (617) 404-6023</p>
+                                <p class="font-mono text-xs uppercase tracking-wide text-white/40">Phone</p>
+                                <p class="text-sm text-paper">+1 (617) 404-6023</p>
                             </div>
                         </div>
-                        <i data-lucide="arrow-right" class="w-5 h-5 text-slate-400"></i>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-white/30"></i>
                     </a>
-                    <a href="https://wa.me/16174046023" target="_blank" rel="noopener noreferrer" class="card p-5 rounded-lg hover:border-blue-600 transition-colors flex items-center justify-between">
+                    <a href="https://wa.me/16174046023" target="_blank" rel="noopener noreferrer" class="bg-ink p-6 hover:bg-white/5 transition-colors flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                            <i data-lucide="message-circle" class="w-6 h-6 text-blue-600"></i>
+                            <i data-lucide="message-circle" class="w-5 h-5 text-signal"></i>
                             <div class="text-left">
-                                <p class="font-semibold text-slate-800">WhatsApp</p>
-                                <p class="text-sm text-slate-500">Chat on WhatsApp</p>
+                                <p class="font-mono text-xs uppercase tracking-wide text-white/40">WhatsApp</p>
+                                <p class="text-sm text-paper">Chat on WhatsApp</p>
                             </div>
                         </div>
-                        <i data-lucide="arrow-right" class="w-5 h-5 text-slate-400"></i>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-white/30"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/palaktanwar/" target="_blank" rel="noopener noreferrer" class="card p-5 rounded-lg hover:border-blue-600 transition-colors flex items-center justify-between">
+                    <a href="https://www.linkedin.com/in/palaktanwar/" target="_blank" rel="noopener noreferrer" class="bg-ink p-6 hover:bg-white/5 transition-colors flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                            <i data-lucide="linkedin" class="w-6 h-6 text-blue-600"></i>
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-signal"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                             <div class="text-left">
-                                <p class="font-semibold text-slate-800">LinkedIn</p>
-                                <p class="text-sm text-slate-500">Connect on LinkedIn</p>
+                                <p class="font-mono text-xs uppercase tracking-wide text-white/40">LinkedIn</p>
+                                <p class="text-sm text-paper">Connect on LinkedIn</p>
                             </div>
                         </div>
-                        <i data-lucide="arrow-right" class="w-5 h-5 text-slate-400"></i>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-white/30"></i>
                     </a>
-                    <a href="https://github.com/palaktanwar" target="_blank" rel="noopener noreferrer" class="card p-5 rounded-lg hover:border-blue-600 transition-colors flex items-center justify-between sm:col-span-2">
+                    <a href="https://github.com/palaktanwar" target="_blank" rel="noopener noreferrer" class="bg-ink p-6 hover:bg-white/5 transition-colors flex items-center justify-between sm:col-span-2">
                         <div class="flex items-center gap-3">
-                            <i data-lucide="github" class="w-6 h-6 text-blue-600"></i>
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-signal"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
                             <div class="text-left">
-                                <p class="font-semibold text-slate-800">GitHub</p>
-                                <p class="text-sm text-slate-500">View my repositories</p>
+                                <p class="font-mono text-xs uppercase tracking-wide text-white/40">GitHub</p>
+                                <p class="text-sm text-paper">View my repositories</p>
                             </div>
                         </div>
-                        <i data-lucide="arrow-right" class="w-5 h-5 text-slate-400"></i>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-white/30"></i>
                     </a>
                 </div>
             </div>
@@ -343,20 +430,22 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-200">
-        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://github.com/palaktanwar" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="github" class="w-6 h-6"></i></a>
-                <a href="https://www.linkedin.com/in/ptanwar/" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
-                <a href="mailto:tanwar.pa@northeastern.edu" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="mail" class="w-6 h-6"></i></a>
-                <a href="https://wa.me/16174046023" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 transition-colors"><i data-lucide="message-circle" class="w-6 h-6"></i></a>
+    <footer class="bg-ink border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-6 py-8 text-center">
+            <div class="flex items-center justify-center space-x-6 mb-4">
+                <a href="https://github.com/palaktanwar" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-white/50 hover:text-signal transition-colors"><svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                <a href="https://www.linkedin.com/in/ptanwar/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-white/50 hover:text-signal transition-colors"><svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                <a href="mailto:tanwar.pa@northeastern.edu" class="inline-flex items-center text-white/50 hover:text-signal transition-colors"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                <a href="https://wa.me/16174046023" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-white/50 hover:text-signal transition-colors"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
             </div>
-            <p>&copy; 2025 Palak Tanwar.</p>
+            <p class="font-mono text-xs text-white/40">&copy; 2026 Palak Tanwar. <span class="opacity-10 hover:opacity-100 transition-opacity duration-500" title="meow">&#128008;</span></p>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
+
+        console.log("%c/\\_/\\\n( o.o )  thanks for checking the console.\n > ^ <", "font-family: monospace; color: #E0973C;");
 
         // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -364,7 +453,7 @@
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-        
+
         // Close mobile menu when a link is clicked
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
@@ -396,5 +485,3 @@
     </script>
 </body>
 </html>
-
-
